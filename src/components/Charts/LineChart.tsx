@@ -1,28 +1,30 @@
 // material-ui
 // project import
-import useConfig from '@/hooks/useConfig'
-import { thousands } from '@/utils'
-import { useTheme } from '@mui/material/styles'
-import dynamic from 'next/dynamic'
-import React, { useState } from 'react'
+import useConfig from '@/hooks/useConfig';
+import { thousands } from '@/utils';
+import { useTheme } from '@mui/material/styles';
+import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
 
-const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
+const ReactApexChart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+});
 
 export type LineChartProps = {
-  data?: any
-  chartOptions?: any
-}
+  data?: any;
+  chartOptions?: any;
+};
 
 // ==============================|| LINE CHART ||============================== //
 
 const ApexLineChart = ({ data }: LineChartProps) => {
-  const theme = useTheme()
-  const { navType } = useConfig()
+  const theme = useTheme();
+  const { navType } = useConfig();
 
-  const { primary } = theme.palette.text
-  const darkLight = theme.palette.dark.light
-  const grey200 = theme.palette.grey[200]
-  const secondary = theme.palette.secondary.main
+  const { primary } = theme.palette.text;
+  const darkLight = theme.palette.dark.light;
+  const grey200 = theme.palette.grey[200];
+  const secondary = theme.palette.secondary.main;
 
   const [graphData] = useState<any>({
     series: [
@@ -57,7 +59,7 @@ const ApexLineChart = ({ data }: LineChartProps) => {
             colors: [primary],
           },
           formatter: (value: any) => {
-            return `$${thousands(value)}`
+            return `$${thousands(value)}`;
           },
         },
       },
@@ -73,20 +75,20 @@ const ApexLineChart = ({ data }: LineChartProps) => {
         },
         y: {
           formatter(val: number) {
-            return `$${thousands(val)}`
+            return `$${thousands(val)}`;
           },
           title: {
             formatter() {
-              return `Home price:`
+              return `Home price:`;
             },
           },
         },
       },
     },
-  })
+  });
 
   return (
-    <div id="chart">
+    <div id="chart" style={{ width: '100%' }}>
       {graphData && (
         <ReactApexChart
           options={graphData.options}
@@ -96,7 +98,7 @@ const ApexLineChart = ({ data }: LineChartProps) => {
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ApexLineChart
+export default ApexLineChart;

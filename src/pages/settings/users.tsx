@@ -1,7 +1,7 @@
-import MainCard from '@/components/Cards/ui/MainCard'
-import UserList from '@/components/List/UserList'
-import { signUpStandard, getUsers, updateUser } from '@/services'
-import { checkPermissions } from '@/utils'
+import MainCard from '@/components/Cards/ui/MainCard';
+//import UserList from '@/components/List/UserList'
+import { signUpStandard, updateUser } from '@/services';
+import { checkPermissions } from '@/utils';
 import {
   Button,
   Modal,
@@ -12,17 +12,16 @@ import {
   FormGroup,
   InputLabel,
   TextField,
-  Grid,
-  CircularProgress,
-} from '@mui/material'
-import { useSnackbar } from 'notistack'
-import React, { useState, useEffect } from 'react'
+  Grid, //CircularProgress,
+} from '@mui/material';
+import { useSnackbar } from 'notistack';
+import React, { useState, useEffect } from 'react';
 
 export type UsersProps = {
-  formDetails?: any
-  permissions?: any
-  token?: any
-}
+  formDetails?: any;
+  permissions?: any;
+  token?: any;
+};
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -34,28 +33,28 @@ const modalStyle = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-}
+};
 
 const Users = ({ formDetails, permissions, token }: UsersProps) => {
-  const { enqueueSnackbar } = useSnackbar()
+  const { enqueueSnackbar } = useSnackbar();
 
-  const [toggleUserModal, setToggleUserModal] = useState<boolean>(false)
-  const [userToEdit, setUserToEdit] = useState<any>({})
-  const [userCreateAdmin, setUserCreateAdmin] = useState<boolean>(false)
-  const [formData, setFormData] = useState<any>({})
-  const [isAdmin, setIsAdmin] = useState<any>(false)
-  const [orgUsers, setOrgUsers] = useState<any>()
-  const [baseUrl, setBaseUrl] = useState<any>()
+  const [toggleUserModal, setToggleUserModal] = useState<boolean>(false);
+  const [userToEdit, setUserToEdit] = useState<any>({});
+  const [userCreateAdmin, setUserCreateAdmin] = useState<boolean>(false);
+  const [formData, setFormData] = useState<any>({});
+  const [isAdmin, setIsAdmin] = useState<any>(false);
+  //const [orgUsers, setOrgUsers] = useState<any>();
+  const [baseUrl, setBaseUrl] = useState<any>();
 
   useEffect(() => {
-    setBaseUrl(window.location.origin)
+    setBaseUrl(window.location.origin);
 
-    getUsers(token).then((res) => {
-      if (res) {
-        setOrgUsers(res.users)
-      }
-    })
-  }, [])
+    // getUsers(token).then((res) => {
+    //   if (res) {
+    //     setOrgUsers(res.users);
+    //   }
+    // });
+  }, []);
 
   // const deleteUser = (id: number) => {
   //   alert(id);
@@ -65,53 +64,53 @@ const Users = ({ formDetails, permissions, token }: UsersProps) => {
     const obj = {
       ...formData,
       [type]: event.target.value,
-    }
+    };
 
-    setFormData(obj)
-  }
+    setFormData(obj);
+  };
 
   const submitFormData = () => {
-    setToggleUserModal(!toggleUserModal)
-    let data = formData
-    data.baseUrl = baseUrl
+    setToggleUserModal(!toggleUserModal);
+    let data = formData;
+    data.baseUrl = baseUrl;
     if (userCreateAdmin) {
-      data.orgAdmin = true
-      setUserCreateAdmin(false)
+      data.orgAdmin = true;
+      setUserCreateAdmin(false);
       if (!data.usagePlan) {
-        data.usagePlan = 'basic'
+        data.usagePlan = 'basic';
       }
     }
     if (isAdmin) {
-      data.orgAdmin = true
-      setIsAdmin(false)
+      data.orgAdmin = true;
+      setIsAdmin(false);
     }
 
     if (userToEdit) {
       updateUser(token, data).then((res) => {
-        console.log('this is res', res)
-      })
+        console.log('this is res', res);
+      });
       enqueueSnackbar(`${data.firstName} has successfully been updated!`, {
         variant: 'success',
         autoHideDuration: 3000,
-      })
+      });
     } else {
       signUpStandard(token, data).then((res) => {
-        console.log('this is res', res)
-      })
+        console.log('this is res', res);
+      });
     }
-  }
+  };
 
   useEffect(() => {
     if (!toggleUserModal) {
-      setUserCreateAdmin(false)
+      setUserCreateAdmin(false);
     }
-  }, [toggleUserModal])
+  }, [toggleUserModal]);
 
   const userModal = (user: any) => {
-    setToggleUserModal(!toggleUserModal)
-    setFormData(user)
-    setUserToEdit(user)
-  }
+    setToggleUserModal(!toggleUserModal);
+    setFormData(user);
+    setUserToEdit(user);
+  };
 
   return (
     <>
@@ -136,7 +135,7 @@ const Users = ({ formDetails, permissions, token }: UsersProps) => {
                     color="secondary"
                     variant="contained"
                     onClick={() => {
-                      setUserCreateAdmin(true), userModal(null)
+                      setUserCreateAdmin(true), userModal(null);
                     }}
                     className="ml-md-4 "
                   >
@@ -150,13 +149,13 @@ const Users = ({ formDetails, permissions, token }: UsersProps) => {
         }
         content={false}
       >
-        <Grid item xs={12} sx={{ p: 3 }}>
+        {/* <Grid item xs={12} sx={{ p: 3 }}>
           {orgUsers ? (
             <UserList userModal={userModal} users={orgUsers} />
           ) : (
             <CircularProgress />
           )}
-        </Grid>
+        </Grid> */}
       </MainCard>
 
       <Modal
@@ -231,7 +230,7 @@ const Users = ({ formDetails, permissions, token }: UsersProps) => {
                     value={formData?.orgAdmin}
                     label=""
                     onClick={(e) => {
-                      setIsAdmin((e.target as HTMLInputElement).checked)
+                      setIsAdmin((e.target as HTMLInputElement).checked);
                     }}
                   />
                 </FormGroup>
@@ -260,6 +259,6 @@ const Users = ({ formDetails, permissions, token }: UsersProps) => {
         </Box>
       </Modal>
     </>
-  )
-}
-export default Users
+  );
+};
+export default Users;

@@ -1,31 +1,30 @@
-import TotalOrderLineChartCard from '../Cards/TotalOrderLineChartCard'
-import { thousands, getPercentage, isNegative } from '@/utils'
-import InfoIcon from '@mui/icons-material/Info'
+// import TotalOrderLineChartCard from '../Cards/TotalOrderLineChartCard'
+// import { thousands, getPercentage, isNegative } from '@/utils';
+import InfoIcon from '@mui/icons-material/Info';
 import {
-  Box,
-  CircularProgress,
+  Box, // CircularProgress,
   Skeleton,
   Tooltip,
   Typography,
-} from '@mui/material'
-import { useTheme } from '@mui/system'
+} from '@mui/material';
+import { useTheme } from '@mui/system';
 
 type InfoBoxProps = {
-  data?: any
-  simple?: boolean
-  boxTitle?: string
-  tooltip?: string
-  fullWidth?: boolean
-}
+  data?: any;
+  simple?: boolean;
+  boxTitle?: string;
+  tooltip?: string;
+  fullWidth?: boolean;
+};
 
 const InfoBox = ({
   data,
-  simple,
+  // simple,
   boxTitle,
   tooltip,
   fullWidth,
 }: InfoBoxProps) => {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Box
@@ -80,9 +79,9 @@ const InfoBox = ({
             height={50}
           />
         ) : (
-          data.map((item: any, index: number) => (
+          data.map((_: any, index: number) => (
             <Box sx={{ width: 'auto' }} key={`item-${index}`}>
-              {simple ? (
+              {/* {simple ? (
                 <Box
                   sx={{
                     py: 3,
@@ -130,13 +129,13 @@ const InfoBox = ({
                   }
                   url={item.link}
                 />
-              )}
+              )} */}
             </Box>
           ))
         )}
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default InfoBox
+export default InfoBox;
