@@ -40,7 +40,6 @@ const Palette = (navType: PaletteMode, presetColor: string) => {
     default:
       colors = defaultColor;
   }
-  console.log(colors);
 
   return createTheme({
     palette: {

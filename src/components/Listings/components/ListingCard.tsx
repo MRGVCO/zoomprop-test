@@ -16,7 +16,7 @@ export const ListingCard = ({ listing }: ListingCardProps) => {
   const theme = useTheme();
   const router = useRouter();
 
-  const onCardClick = () => {
+  const onDetailsClick = () => {
     router.push(`/listing?listingId=${listing.listingId}`);
   };
 
@@ -63,7 +63,10 @@ export const ListingCard = ({ listing }: ListingCardProps) => {
             </Typography>
           </Grid>
         </Grid>
-        <SeeMoreBtn color={theme.palette.secondary.main} onClick={onCardClick}>
+        <SeeMoreBtn
+          color={theme.palette.secondary.main}
+          onClick={onDetailsClick}
+        >
           <Typography>Details</Typography>
         </SeeMoreBtn>
       </CardContent>
