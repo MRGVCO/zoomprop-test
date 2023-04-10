@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
+import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
 
 interface ListingCardProps {
@@ -12,6 +13,7 @@ interface ListingCardProps {
 }
 
 export const ListingCard = ({ listing }: ListingCardProps) => {
+  const theme = useTheme();
   const router = useRouter();
 
   const onCardClick = () => {
@@ -19,9 +21,16 @@ export const ListingCard = ({ listing }: ListingCardProps) => {
   };
 
   return (
-    <StyledCard onClick={onCardClick}>
+    <StyledCard>
       <CardMedia component="img" image={listing.primaryImageUrl as string} />
-      <CardContent>
+      <CardContent
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
         <Grid
           container
           spacing={2}
@@ -44,13 +53,19 @@ export const ListingCard = ({ listing }: ListingCardProps) => {
           <Grid item>
             <Typography>
               {listing.customTags ? (
-                <Chip label={listing.customTags[0]} color="secondary" />
+                <Chip
+                  label={listing.customTags[0]}
+                  sx={{ backgroundColor: theme.palette.info.dark }}
+                />
               ) : (
                 'No tags'
               )}
             </Typography>
           </Grid>
         </Grid>
+        <SeeMoreBtn color={theme.palette.secondary.main} onClick={onCardClick}>
+          <Typography>Details</Typography>
+        </SeeMoreBtn>
       </CardContent>
     </StyledCard>
   );
@@ -60,9 +75,17 @@ const StyledCard = styled(Card)`
   background-color: #000;
   display: flex;
   width: 600px;
+`;
+
+const SeeMoreBtn = styled.button<{ color: string }>`
+  width: 100px;
+  padding: 0.5rem;
+  background-color: ${(props) => props.color};
+  color: #fff;
+  transition: background-color 0.2s;
 
   &:hover {
+    background-color: #4f37ed;
     cursor: pointer;
-    box-shadow: 0 0 6px #000;
   }
 `;

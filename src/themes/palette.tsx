@@ -1,45 +1,46 @@
 // @ts-nocheck
 // material-ui
-import theme1 from '../scss/_theme1.module.scss'
-import theme2 from '../scss/_theme2.module.scss'
-import theme3 from '../scss/_theme3.module.scss'
-import theme4 from '../scss/_theme4.module.scss'
-import theme5 from '../scss/_theme5.module.scss'
-import theme6 from '../scss/_theme6.module.scss'
+import theme1 from '../scss/_theme1.module.scss';
+import theme2 from '../scss/_theme2.module.scss';
+import theme3 from '../scss/_theme3.module.scss';
+import theme4 from '../scss/_theme4.module.scss';
+import theme5 from '../scss/_theme5.module.scss';
+import theme6 from '../scss/_theme6.module.scss';
 // assets
-import defaultColor from '../scss/_themes-vars.module.scss'
+import defaultColor from '../scss/_themes-vars.module.scss';
 // types
-import { ColorProps } from '@/types'
-import { PaletteMode } from '@mui/material'
-import { createTheme } from '@mui/material/styles'
+import { ColorProps } from '@/types';
+import { PaletteMode } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 // ==============================|| DEFAULT THEME - PALETTE  ||============================== //
 
 const Palette = (navType: PaletteMode, presetColor: string) => {
-  let colors: ColorProps
+  let colors: ColorProps;
   switch (presetColor) {
     case 'theme1':
-      colors = theme1
-      break
+      colors = theme1;
+      break;
     case 'theme2':
-      colors = theme2
-      break
+      colors = theme2;
+      break;
     case 'theme3':
-      colors = theme3
-      break
+      colors = theme3;
+      break;
     case 'theme4':
-      colors = theme4
-      break
+      colors = theme4;
+      break;
     case 'theme5':
-      colors = theme5
-      break
+      colors = theme5;
+      break;
     case 'theme6':
-      colors = theme6
-      break
+      colors = theme6;
+      break;
     case 'default':
     default:
-      colors = defaultColor
+      colors = defaultColor;
   }
+  console.log(colors);
 
   return createTheme({
     palette: {
@@ -116,7 +117,7 @@ const Palette = (navType: PaletteMode, presetColor: string) => {
         default: navType === 'dark' ? colors.darkPaper : colors.paper,
       },
     },
-  })
-}
+  });
+};
 
-export default Palette
+export default Palette;
