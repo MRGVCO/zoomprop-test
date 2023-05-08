@@ -1,5 +1,4 @@
 import MainCard from '@/components/Cards/ui/MainCard'
-import UserList from '@/components/List/UserList'
 import { signUpStandard, getUsers, updateUser } from '@/services'
 import { checkPermissions } from '@/utils'
 import {
@@ -151,11 +150,7 @@ const Users = ({ formDetails, permissions, token }: UsersProps) => {
         content={false}
       >
         <Grid item xs={12} sx={{ p: 3 }}>
-          {orgUsers ? (
-            <UserList userModal={userModal} users={orgUsers} />
-          ) : (
-            <CircularProgress />
-          )}
+          {orgUsers ? <></> : <CircularProgress />}
         </Grid>
       </MainCard>
 
