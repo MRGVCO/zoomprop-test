@@ -280,7 +280,7 @@ export default function componentStyleOverrides(
       styleOverrides: {
         root: {
           borderColor: theme.palette.divider,
-          opacity: mode === 'dark' ? 0.2 : 1,
+          opacity: mode === 'dark' ? 0.4 : 1,
         },
       },
     },
@@ -415,8 +415,8 @@ export default function componentStyleOverrides(
               ? theme.palette.text.primary + 15
               : theme.palette.grey[200],
           '&.MuiTableCell-head': {
-            fontSize: '0.875rem',
-            color: theme.palette.grey[600],
+            fontSize: '1.2rem',
+            color: theme.palette.grey[900],
             fontWeight: 500,
           },
         },
