@@ -26,7 +26,7 @@ const GMap = ({ coordinates }: GMapProps) => {
   return (
     <GoogleMapReact
       bootstrapURLKeys={{
-        key: 'AIzaSyBO2I_RBjLCMFC9WZ4d6oIKOSqhWj7h8i8',
+        key: `${process.env.GOOGLE_MAPS_API_KEY}`,
       }}
       defaultCenter={{
         lat: 38.68,

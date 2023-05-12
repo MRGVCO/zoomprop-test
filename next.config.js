@@ -16,6 +16,7 @@ module.exports = withBundleAnalyzer({
     API_URL: process.env.ZOOMPROP_API_URL,
     COGNITO_CLIENTID: process.env.COGNITO_CLIENTID,
     AUTH_REQUIRED: process.env.AUTH_REQUIRED,
+    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
   },
   // The starter code load resources from `public` folder with `router.basePath` in React components.
   // So, the source code is "basePath-ready".

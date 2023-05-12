@@ -18,4 +18,15 @@ export interface Listing {
   baths: number
   yearBuilt: number
   listPrice: number
+  livingArea: number
+  yoy1: number
+  yoy3: number
+  yoy5: number
+  yoy10: number
+  months1: number
+  months3: number
+  months6: number
+  nextMonths1: number
+  nextMonths3: number
+  nextMonths6: number
 }
