@@ -13,7 +13,9 @@ interface ListingProps {
 
 const Listing = ({ listing }: ListingProps) => {
   return (
-    <Main>
+    <Main
+      title={`${listing.streetAddress}, ${listing.city}, ${listing.zipcode}`}
+    >
       <Container maxWidth="md">
         <ListingDetails listing={listing} />
         <Box mt={4}>

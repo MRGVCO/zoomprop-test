@@ -26,7 +26,7 @@ const Index = ({ listings }: IndexProps) => {
   })
 
   return (
-    <Main>
+    <Main title="Available listings">
       <Container maxWidth="md">
         <Grid container spacing={2}>
           <Grid item xs>
