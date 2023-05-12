@@ -17,4 +17,5 @@ export interface Listing {
   beds: number
   baths: number
   yearBuilt: number
+  listPrice: number
 }

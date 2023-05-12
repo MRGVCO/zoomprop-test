@@ -1,22 +1,27 @@
+import GMap from '../GMap'
 import { Listing } from '@/types/listing'
+import { formatUSDPrice } from '@/utils/helperFn'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import BathtubIcon from '@mui/icons-material/Bathtub'
 import BedIcon from '@mui/icons-material/Bed'
-import { Box, Tooltip, Typography } from '@mui/material'
+import { Box, Grid, Tooltip, Typography } from '@mui/material'
 
 interface ListingDetailsProps {
   listing: Listing
 }
 
 const ListingDetails = ({ listing }: ListingDetailsProps) => {
+  console.log(listing)
   return (
-    <Box id="description" display="flex">
-      <img
-        src={listing.primaryImageUrl}
-        height={240}
-        style={{ borderRadius: 8 }}
-      />
-      <Box id="descriptionText" ml={2}>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+        <img
+          src={listing.primaryImageUrl}
+          width="100%"
+          style={{ borderRadius: 8 }}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
         <Box>
           <Typography variant="h2">{listing.streetAddress}</Typography>
           <Typography variant="h5">
@@ -44,8 +49,20 @@ const ListingDetails = ({ listing }: ListingDetailsProps) => {
             </Box>
           </Tooltip>
         </Box>
-      </Box>
-    </Box>
+        <Box>
+          <Typography variant="h1">
+            {formatUSDPrice(listing.listPrice)}
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid item xs>
+        <Box width="100%" height={240}>
+          <GMap
+            coordinates={{ lat: listing.latitude, lng: listing.longitude }}
+          />
+        </Box>
+      </Grid>
+    </Grid>
   )
 }
 

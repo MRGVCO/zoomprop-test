@@ -2,6 +2,7 @@ import LineGraph from '@/components/LineGraph'
 import { EstimateDateRange } from '@/types/graphs'
 import { Estimate } from '@/types/listing'
 import { getGraphData } from '@/utils/graphs'
+import { formatUSDPrice } from '@/utils/helperFn'
 import {
   Typography,
   FormControl,
@@ -44,13 +45,7 @@ const PastEstimatesLineGraph = ({ estimates }: PastEstimatesLineGraphProps) => {
     tooltips: {
       callbacks: {
         label: (item) => {
-          return item.yLabel
-            ? new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 0,
-              }).format(+item.yLabel)
-            : 'Missing label'
+          return item.yLabel ? formatUSDPrice(+item.yLabel) : 'Missing label'
         },
       },
     },
@@ -63,13 +58,7 @@ const PastEstimatesLineGraph = ({ estimates }: PastEstimatesLineGraphProps) => {
       yAxes: [
         {
           ticks: {
-            callback: (value) => {
-              return new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 0,
-              }).format(+value)
-            },
+            callback: (value) => formatUSDPrice(+value),
           },
         },
       ],

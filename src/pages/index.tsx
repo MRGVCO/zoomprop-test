@@ -94,7 +94,16 @@ const Index = ({ listings }: IndexProps) => {
             </Grid>
           </Grid>
           <Grid item sx={{ width: 300, display: { xs: 'none', md: 'block' } }}>
-            <GMap coordinates={coordinates} />
+            <Box position="fixed">
+              <Box
+                sx={{
+                  height: 300,
+                  width: 300,
+                }}
+              >
+                <GMap coordinates={coordinates} />
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>

@@ -1,5 +1,6 @@
 import LineGraph from '../LineGraph'
 import { Estimate } from '@/types/listing'
+import { formatUSDPrice } from '@/utils/helperFn'
 import { Box, Typography } from '@mui/material'
 import { ChartData } from 'chart.js'
 
@@ -26,13 +27,7 @@ const FutureEstimatesLineGraph = ({
     tooltips: {
       callbacks: {
         label: (item) => {
-          return item.yLabel
-            ? new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 0,
-              }).format(+item.yLabel)
-            : 'Missing label'
+          return item.yLabel ? formatUSDPrice(+item.yLabel) : 'Missing label'
         },
       },
     },
@@ -45,13 +40,7 @@ const FutureEstimatesLineGraph = ({
       yAxes: [
         {
           ticks: {
-            callback: (value) => {
-              return new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 0,
-              }).format(+value)
-            },
+            callback: (value) => formatUSDPrice(+value),
           },
         },
       ],

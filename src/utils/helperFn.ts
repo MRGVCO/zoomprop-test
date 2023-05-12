@@ -164,3 +164,11 @@ export const arrayEquals = (a: any, b: any) => {
     a.every((val, index) => val === b[index])
   )
 }
+
+export const formatUSDPrice = (price: number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(price)
+}
