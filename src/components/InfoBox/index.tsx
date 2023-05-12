@@ -1,4 +1,3 @@
-import TotalOrderLineChartCard from '../Cards/TotalOrderLineChartCard'
 import { thousands, getPercentage, isNegative } from '@/utils'
 import InfoIcon from '@mui/icons-material/Info'
 import {
@@ -81,57 +80,7 @@ const InfoBox = ({
           />
         ) : (
           data.map((item: any, index: number) => (
-            <Box sx={{ width: 'auto' }} key={`item-${index}`}>
-              {simple ? (
-                <Box
-                  sx={{
-                    py: 3,
-                    pr: 8,
-                  }}
-                >
-                  <Typography variant="h3" sx={{ mb: 1 }}>
-                    {item.type === 'percentage'
-                      ? getPercentage(item.value)
-                      : thousands(item.value)}
-                  </Typography>
-                  <Typography sx={{ alignItems: 'center' }}>
-                    <Box
-                      sx={{
-                        display: 'inline-flex',
-                      }}
-                    >
-                      {item.icon && <Box sx={{ mr: 1 }}>{item.icon}</Box>}
-                      <Box sx={{ pt: '3px' }}>{item.name}</Box>
-                    </Box>
-                  </Typography>
-                </Box>
-              ) : (
-                <TotalOrderLineChartCard
-                  title={item.name}
-                  value={
-                    item.value === undefined ? (
-                      <CircularProgress size={20} />
-                    ) : item.type === 'percentage' ? (
-                      getPercentage(item.value)
-                    ) : (
-                      thousands(item.value)
-                    )
-                  }
-                  isLoading={false}
-                  percentage={
-                    item?.data?.percent && (
-                      <>{getPercentage(item?.data?.percent)}</>
-                    )
-                  }
-                  count={item.count}
-                  graph={item?.data?.countHistory}
-                  trajectory={
-                    item?.data?.percent && !isNegative(item?.data?.percent)
-                  }
-                  url={item.link}
-                />
-              )}
-            </Box>
+            <Box sx={{ width: 'auto' }} key={`item-${index}`}></Box>
           ))
         )}
       </Box>

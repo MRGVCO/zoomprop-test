@@ -8,7 +8,6 @@ class MyDocument extends Document {
     return (
       <Html lang={AppConfig.locale}>
         <Head>
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO2I_RBjLCMFC9WZ4d6oIKOSqhWj7h8i8&libraries=places"></script>
           <link
             href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css"
             rel="stylesheet"
